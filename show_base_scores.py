@@ -36,10 +36,10 @@ st.set_page_config(layout="wide")
 # --- Streamlit Inputs ---
 st.markdown(
     """
-    <h1 style='text-align: center; color: #2c3e50; font-size: 2.8em; font-family: "Segoe UI", Arial, sans-serif; margin-bottom: 0.2em;'>
+    <h1 style='text-align: center; color: #b3c6e0; font-size: 2.8em; font-family: "Segoe UI", Arial, sans-serif; margin-bottom: 0.2em;'>
         Base Score Extraction Function Visualisation
     </h1>
-    <hr style='border: 1px solid #bbb; margin-top: 0.2em; margin-bottom: 1.2em;'>
+    <hr style='border: 1px solid #e0e6ef; margin-top: 0.2em; margin-bottom: 1.2em;'>
     """,
     unsafe_allow_html=True
 )
@@ -48,6 +48,8 @@ st.markdown(
 left_col, right_col = st.columns(2)
 
 with left_col:
+    
+    st.subheader("Framework Configuration")
 
     # Large text area for argumentation framework data
     framework_text = st.text_area(
@@ -72,7 +74,10 @@ att(f, o1)""",
 
     framework_lines = framework_text.splitlines()
     # Input string in the form a>b>c>>d>e=f
-    input_str = st.text_input("Enter string (format: a>b>c>>d>e=f):", "a>b>c>>d>e=f")
+
+    st.subheader("Preferences Configuration")
+
+    input_str = st.text_input("Enter preferences, being > a preferred relation, = a similar relation, and >> a much preferred relation. (format: a>b>c>>d>e=f):", "a>b>c>>d>e=f")
 
     arguments_text = []
     for line in framework_lines:
@@ -93,6 +98,8 @@ att(f, o1)""",
     print("arguments_text: ", arguments_text)
     print("arguments_preferences: ", arguments_preferences)
     assert(set(arguments_text) == set(arguments_preferences)), "All input arguments must be in the preference ordering."
+
+    st.subheader("Design Choices for the Base Score Extraction Function")
     # Float input between 0 and 1
     st.latex(r"\text{Select a ratio for } \delta / \Delta")
     input_float = st.slider("δ/Δ ratio:", 0.0, 1.0, 0.5)

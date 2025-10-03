@@ -1,12 +1,14 @@
 version: '3.9'
 
 services:
-  vb_qbafs:
+  bsef:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: vb_qbafs
+    container_name: base_score_extraction_functions
+    ports:
+      - "8501:8501"
     volumes:
       - .:/app
     restart: "no"
-    command: python test_nyam_pace.py #test_properties.py #test_values.py
+    command: streamlit run show_base_scores.py

@@ -25,6 +25,7 @@ COPY . /app
 WORKDIR /app
 # Install Python dependencies
 RUN pip install -r requirements.txt
+#RUN git submodule update --init --recursive --remote
 WORKDIR /app/Quantitative-Bipolar-Argumentation
 RUN pip install -e .
 WORKDIR /app
