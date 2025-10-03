@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  vb_qbafs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vb_qbafs
+    volumes:
+      - .:/app
+    restart: "no"
+    command: python test_nyam_pace.py #test_properties.py #test_values.py
